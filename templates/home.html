@@ -17,35 +17,7 @@
     </header>
 
     <main>
-        <section>
-            <div id="form_resumo" class="form_resumo">
-                <h1>Resumo Mensal</h1>
-                <div id="form_resumofrente" class="form_resumofrente">
-                    Total em Entradas
-                    {% if resumo_receitas %}
-                    <ul>
-                        <li> Valor: {{c[1]}} </li>
-                    </ul>
-                    {% else %}
-                    <h1>Não existem receitas cadastradas</h1>
-                    {% endif %}
-
-                </div>
-                
-                <div id="form_resumofrente" class="form_resumofrente">
-                    Total de Saídas
-                </div>
-                    
-                <div id="form_resumofrente" class="form_resumofrente">
-                    Saldo Atual
-                </div>
-                <form action="listar_resumo">
-                    <button type="submit">RESUMO</button>
-                </form>
-            </div>
-        </section>
         
-
         <section class="resumo">
             <div id="form_fundo" class="form_fundo">
                 <h1>RECEITAS MENSAIS</h1>

@@ -106,17 +106,4 @@ def excluir_gastos():
 
     return render_template("home.html", gastos=gastos, receitas=receitas)
 
-#LISTAR RESUMOS 
-@app.route('/listar_resumo')
-def listar_resumo():
-
-    cursor.execute('SELECT SUM (valor_receita) FROM RECEITAS;')
-    resumo_receitas = cursor.fetchall()
-    cursor.execute('SELECT SUM (valor_gasto) FROM GASTOS;')
-    resumo_gastos = cursor.fetchall()
-
-    return render_template("home.html", resumo_gastos=resumo_gastos,  resumo_receitas=resumo_receitas)
-
-
-
 app.run(port=5000,host='localhost', debug=True)
