@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <p>Gerenciador de Finanças</p>
+    </header>
+
+    <main>
+        <section>
+            <div id="form_resumo" class="form_resumo">
+                <h1>Resumo Mensal</h1>
+                <div id="form_resumofrente" class="form_resumofrente">
+                    Total em Entradas
+                    {% if resumo_receitas %}
+                    <ul>
+                        <li> Valor: {{c[1]}} </li>
+                    </ul>
+                    {% else %}
+                    <h1>Não existem receitas cadastradas</h1>
+                    {% endif %}
+
+                </div>
+                
+                <div id="form_resumofrente" class="form_resumofrente">
+                    Total de Saídas
+                </div>
+                    
+                <div id="form_resumofrente" class="form_resumofrente">
+                    Saldo Atual
+                </div>
+                <form action="listar_resumo">
+                    <button type="submit">RESUMO</button>
+                </form>
+            </div>
+        </section>
+        
+
+        <section class="resumo">
+            <div id="form_fundo" class="form_fundo">
+                <h1>RECEITAS MENSAIS</h1>
+                <div id="form_frente" , class="form_frente">
+                    {% if receitas %}
+                    {% for c in receitas %}
+                    <form action="/excluir_receitas" method="post">
+                        <ul>
+                            <input type="hidden" name="excluirReceita" value="{{c[0]}}">
+                            <li>Descrição: {{c[1]}}</li>
+                            <li> Data: {{c[2]}} </li>
+                            <li> Valor: R${{c[3]}} </li>
+                        </ul>
+                        <button type="submit">EXCLUIR</button>
+                    </form>
+                    -------------------------------------------------
+                    {% endfor %}
+                    {% else %}
+                    <h1>Não existem receitas cadastradas</h1>
+                    {% endif %}
+                </div>
+                <form action="listar_receitas">
+                    <button type="submit">LISTAR RECEITAS</button>
+                </form>
+            </div>
+
+            <div id="form_fundo" class="form_fundo">
+                <h1>GASTOS MENSAIS</h1>
+                <div id="form_frente" class="form_frente">
+                    {% if gastos %}
+                    {% for c in gastos %}
+                    <form action="/excluir_gastos" method="post">
+                        <ul>
+                            <input type="hidden" name="excluirGasto" value="{{c[0]}}">
+                            <li>DESCRIÇÃO: {{c[1]}}</li><br>
+                            <li> DATA: {{c[2]}} </li><br>
+                            <li> VALOR:  R${{c[3]}} </li>
+                        </ul>
+                        <button type="submit">EXCLUIR</button>
+                    </form>
+                    -------------------------------------------------
+                    {% endfor %}
+                    {% else %}
+                    <h1>Não existem gastos cadastrados</h1>
+                    {% endif %}
+                </div>
+                <form action="listar_gastos">
+                    <button type="submit">LISTAR GASTOS</button>
+                </form>
+            </div>
+
+        </section>
+
+
+        <div id="form_fundo" class="form_fundo_inserir">
+            <h1>INSERIR NOVAS RECEITAS</h1>
+            <div class="form_frente_inserir">
+                <form action="/add_receitas" id="add_receitas" method="post">
+
+                    <label for="descricao">DESCRIÇÃO:</label><br>
+                    <input type="text" id="descricao" name="descricao">
+                    <br><br>
+
+                    <label for="date">DATA: </label><BR>
+                    <input type="date" name="date" id="date">
+                    <br><br>
+
+                    <label for="valor_receita">VALOR (R$):</label>
+                    <input type="text" id="valor_receita" name="valor_receita">
+                    <br><br>
+
+                    <button type="submit" id="btn_receitas">INSERIR</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="form_fundo_inserir" class="form_fundo_inserir">
+            <h1>INSERIR NOVOS GASTOS</h1>
+            <div class="form_frente_inserir">
+                <form action="/add_gastos" id="add_gastos" method="post">
+
+                    <label for="descricao_gasto">DESCRIÇÃO:</label>
+                    <input type="text" id="descricao_gasto" name="descricao_gasto">
+                    <br><br>
+
+                    <label for="data_gasto">DATA:</label><br>
+                    <input type="date" id="data" name="data_gasto">
+                    <br><br>
+
+                    <label for="valor_gasto">VALOR (R$):</label>
+                    <input type="text" id="valor_gasto" name="valor_gasto">
+                    <br><br>
+
+                    <button type="submit" id="btn_gastos">INSERIR</button>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
